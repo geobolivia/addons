@@ -1,0 +1,22 @@
+{
+    "js": [
+        "js/main.js"
+    ],
+    "css": [
+        "css/main.css"
+    ],
+    "default_options": {
+        "editableCombos": true
+    },
+    "i18n": {
+        "en": {
+            "addon_insertcsv_popup_title": "Insert File CSV"
+        },
+        "es": {
+            "addon_insertcsv_popup_title": "Insertar Archivo CSV"            
+        },
+        "fr": {
+            "addon_insertcsv_popup_title": "CSV"
+        }
+    }
+}
