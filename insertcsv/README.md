@@ -1,25 +1,24 @@
 ImportCSV ADDON
 ===============
 
-This addon allows users to zoom in a specific area of the map, either using the current map layers ("dynamic" mode), or a static layer ("static" mode).
+This addon allows users to 
 authors: @rucondori
 
 
-For a static ImportsCSV, you may want to configure your addon with a custom baselayer.
-In this case, the addon config should look like this:
+For the addon config should look like this:
 
     {
         "id": "insertcsv_0",
         "name": "InsertCSV",
         "title": {
-            "en": "Insert CSV",
+            "en": "Insert CSV file",
             "es": "Insertar CSV",
-            "fr": "CSV"
+            "fr": "insérer un fichier CSV"
         },
         "description": {
-            "en": "Insert CSV",
+            "en": "Tool to insert a CSV file",
             "es": "Herramienta para insertar un archivo CSV.",
-            "fr": "CSV"
+            "fr": "Outil pour insérer un fichier CSV"
         },
         "options": {
             "baseLayerConfig": {
@@ -32,20 +31,20 @@ In this case, the addon config should look like this:
     }
     
 
-For a dynamic magnifier (which means that the magnifier will zoom into the current visible layers), the addon config should rather be:
+For a :
 
     {
         "id": "insertcsv_0",
         "name": "InsertCSV",
         "title": {
-            "en": "Insert CSV",
+            "en": "Insert CSV file",
             "es": "Insertar CSV",
-            "fr": "CSV"
+            "fr": "insérer un fichier CSV"
         },
         "description": {
-            "en": "Insert CSV",
+            "en": "Tool to insert a CSV file",
             "es": "Herramienta para insertar un archivo CSV.",
-            "fr": "CSV"
+            "fr": "Outil pour insérer un fichier CSV"
         },
         "options": {
             "mode": "dynamic",
