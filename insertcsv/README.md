@@ -4,7 +4,6 @@ ImportCSV ADDON
 This addon allows users to 
 authors: @rucondori
 
-
 For the addon config should look like this:
 
     {
