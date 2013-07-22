@@ -15,14 +15,13 @@ GEOR.Addons.InsertCSV.prototype = {
     jsonFormat: null,
     geojsonFormat: null,
     
-    //para rel marcador
-    tamanio: 0,				// Tamanio del icono.
-    icono:null,					// El icono del marcador.
+    //for the marker
+    tamanio: 0,				// Icon size.
+    icono:null,				// The marker icon.
     offset: 0,
-    //para rel marcador
+    //for the marker
     
     _insertLayer: null,
-
 
     /**
      * Method: init
@@ -54,10 +53,6 @@ GEOR.Addons.InsertCSV.prototype = {
         
         this.map.addLayer(this.layer);
         
-        //alert(this.map.projection);
-        //alert("y de la capa"+this.layer.projection);
-                
-        // return menu item:
         this.item = new Ext.menu.Item({
             text: record.get("title")[lang],
             iconCls: 'insertcsv-icon',
@@ -69,22 +64,18 @@ GEOR.Addons.InsertCSV.prototype = {
     },
 
     showWindow: function() {
-
-        //<-------------- Creamos el Formulario
+        //<-------------- Create the Form
         var myForm = new Ext.form.FormPanel({
-                //title: 'Hello',
                 width: 370,
                 html: "<input id='inputFile' type='file' name='uploaded'/>",
                 buttons: [{   
-                          //<----------------------------------------------     Aqui esta la magia   -------------------------->
+                          //<---------------------------------------------- 
                           text: 'Add',
                           handler: function(){
-                              poneMarkador();
-                                                           
+                              poneMarkador();         
                           }
-                          //<-------------------------------------------------------------------------------------------------->
+                          //<---------------------------------------------->
                       }],
-                //renderTo: Ext.getBody(),
                 listeners: {
                     afterrender: function() {
                         var itemFile = document.getElementById("inputFile");            
@@ -92,8 +83,6 @@ GEOR.Addons.InsertCSV.prototype = {
                     }
                 }
             });
-        //                                       -------------->
-        
         //-------------------------------------------------------------------------
         function nroLin(miCadena){
             var nroLineas = 0;
@@ -102,7 +91,6 @@ GEOR.Addons.InsertCSV.prototype = {
                     nroLineas++;
                 }
             }
-            //alert("El numero de lineas es: "+nroLineas);
             return nroLineas;
         };
         
@@ -120,7 +108,6 @@ GEOR.Addons.InsertCSV.prototype = {
         
         function poneMarkador(){
             var myNumero=nroLin(myFile);
-            //alert("El numero de lineas es: "+nroLin(myFile));
             
             tamanio = new OpenLayers.Size(21, 25);
             offset = new OpenLayers.Pixel(-(tamanio.w / 2), -tamanio.h);
@@ -141,11 +128,10 @@ GEOR.Addons.InsertCSV.prototype = {
                     indice = indice +1;
                 }
                 
-                //alert("Linea"+ i +": "+linea);
                 //<---------- Manejar la linea
                 lat = buscaDato(linea);
                 lon = buscaDato( linea.substring((linea.indexOf(';') + 1) , (linea.length)) );
-                //alert ("Latitud: "+lat+" Longitud: "+lon);
+
                 if (i !== 0) {
                     if (i === 1) {
                         _insertLayer.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(lat, lon).transform(
@@ -186,17 +172,13 @@ GEOR.Addons.InsertCSV.prototype = {
                           },
                             myForm
                          ],
-                //
                 listeners: {
                     "hide": function() {
-                        /*/alert("Se Cerrara :--)");
-                        //this.map.removeLayer(this.layer);*/
                     },
                     scope: this
                 }
             });
         }
-        //this.map.addLayer(this.layer);
         this.win.show();
     },
         
@@ -216,11 +198,6 @@ function readSingleFile(evt) {
         r.onload = function(e) { 
             var contents = e.target.result;
             myFile = contents;
-            /*alert( "Datos Del Archivo \n " 
-                    +" name: " + f.name + "\n"
-                    +" type: " + f.type + "\n"
-                    +" size: " + f.size + " bytes"+ "\n"           
-                    + " starts with: " + contents.substr(0, contents.indexOf("n")));*/
         }
         r.readAsText(f);
     } else { 
