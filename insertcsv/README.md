@@ -1,8 +1,6 @@
 ImportCSV ADDON
 ===============
 
-
-
 This addon allows users to 
 authors: @rucondori
 
