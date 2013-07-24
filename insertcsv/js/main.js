@@ -15,12 +15,6 @@ GEOR.Addons.InsertCSV.prototype = {
     jsonFormat: null,
     geojsonFormat: null,
     
-    //for the marker
-    tamanio: 0,				// Icon size.
-    icono:null,				// The marker icon.
-    offset: 0,
-    //for the marker
-    
     _insertLayer: null,
 
     /**
@@ -35,8 +29,18 @@ GEOR.Addons.InsertCSV.prototype = {
         this.jsonFormat = new OpenLayers.Format.JSON();
         this.geojsonFormat = new OpenLayers.Format.GeoJSON();
         
-        _insertLayer = new OpenLayers.Layer.Markers("addon_Insert_csv", {
-            displayInLayerSwitcher: false
+        _insertLayer = new OpenLayers.Layer.Vector("addon_Insert_csv", {
+            displayInLayerSwitcher: false,
+             styleMap: new OpenLayers.StyleMap({
+                 "default": {
+                     graphicName: "cross",
+                     pointRadius: 16,
+                     
+                    strokeColor: "fuchsia",
+                    strokeWidth: 2,
+                    fillOpacity: 0
+                  }
+})
         });
         
                
@@ -100,10 +104,6 @@ GEOR.Addons.InsertCSV.prototype = {
         function poneMarkador(){
             var myNumero=nroLin(myFile);
             
-            tamanio = new OpenLayers.Size(21, 25);
-            offset = new OpenLayers.Pixel(-(tamanio.w / 2), -tamanio.h);
-            icono = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', tamanio, offset);
-            
             var indice = 0;
             var lat=0;
             var lon = 0;
@@ -124,20 +124,17 @@ GEOR.Addons.InsertCSV.prototype = {
                 lon = buscaDato( linea.substring((linea.indexOf(';') + 1) , (linea.length)) );
 
                 if (i !== 0) {
-                    if (i === 1) {
-                        _insertLayer.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(lat, lon).transform(
-                                new OpenLayers.Projection("EPSG:4326"), 					// Transformar from WGS 1984
-                                new OpenLayers.Projection("EPSG:900913") 						// a Spherical Mercator Projection.
-                        ), icono));
-                    }else{
-                        _insertLayer.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(lat, lon).transform(
-                            new OpenLayers.Projection("EPSG:4326"), 					// Transformar from WGS 1984
-                            new OpenLayers.Projection("EPSG:900913") 						// a Spherical Mercator Projection.
-                         ), icono.clone()));
-                    }
-                }
-                
-                
+                    var feature = new OpenLayers.Feature.Vector(
+						    new OpenLayers.Geometry.Point(lat, lon).transform(new OpenLayers.Projection("EPSG:4326"), 
+                                                                                                      new OpenLayers.Projection("EPSG:900913")
+                                                                                                     ),
+                                                    {some:'data'},
+						    {externalGraphic: 'http://www.openlayers.org/dev/img/marker.png',
+						    graphicHeight: 21,
+						    graphicWidth: 16
+						    });                                                                
+                     _insertLayer.addFeatures(feature);
+                }              
             }
             
             this.layer = _insertLayer;
