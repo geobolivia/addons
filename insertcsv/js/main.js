@@ -40,7 +40,7 @@ GEOR.Addons.InsertCSV.prototype = {
                     strokeWidth: 2,
                     fillOpacity: 0
                   }
-})
+             })
         });
         
                
@@ -63,9 +63,10 @@ GEOR.Addons.InsertCSV.prototype = {
         var myForm = new Ext.form.FormPanel({
                 width: 370,
                 html: "<input id='inputFile' type='file' name='uploaded'/>",
+                style: '',
                 buttons: [{   
                           //<---------------------------------------------- 
-                          text: 'Add',
+                          text: OpenLayers.i18n('insertcsv_add'),
                           handler: function(){
                               poneMarkador();         
                           }
@@ -137,8 +138,43 @@ GEOR.Addons.InsertCSV.prototype = {
                 }              
             }
             
+            //--------------------------------------------------------------------------------
+            // Needed only for interaction, not for the display.
+            function onPopupClose(evt) {
+                // 'this' is the popup.
+                var feature = this.feature;
+                if (feature.layer) { // The feature is not destroyed
+                    selectControl.unselect(feature);
+                } else { // After "moveend" or "refresh" events on POIs layer all 
+                         //     features have been destroyed by the Strategy.BBOX
+                    this.destroy();
+                }
+            }
+            function onFeatureSelect(evt) {
+                feature = evt.feature;
+                popup = new OpenLayers.Popup.FramedCloud("featurePopup",
+                                         feature.geometry.getBounds().getCenterLonLat(),
+                                         new OpenLayers.Size(100,100),
+                                         "<h2>"+feature.attributes.title + "</h2>" +
+                                         feature.attributes.description,
+                                         null, true, onPopupClose);
+                feature.popup = popup;
+                popup.feature = feature;
+                map.addPopup(popup, true);
+            }
+            function onFeatureUnselect(evt) {
+                feature = evt.feature;
+                if (feature.popup) {
+                    popup.feature = null;
+                    map.removePopup(feature.popup);
+                    feature.popup.destroy();
+                    feature.popup = null;
+                }
+            }
+            //--------------------------------------------------------------------------------
+            
             this.layer = _insertLayer;
-            alert("Correct Insersion");
+            //alert("Correct Insersion");
         }
         //-------------------------------------------------------------------------
         
@@ -194,3 +230,4 @@ function readSingleFile(evt) {
 }
 
 var myFile="";
+
