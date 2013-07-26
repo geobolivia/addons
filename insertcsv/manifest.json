@@ -11,15 +11,18 @@
     "i18n": {
         "en": {
             "addon_insertcsv_popup_title": "Insert File CSV",
-            "insertcsv_add":"Add"
+            "insertcsv_add": "Add",
+            "addon_insertcsv_label_1": "Choose the file: "
         },
         "es": {
             "addon_insertcsv_popup_title": "Insertar Archivo CSV",
-            "insertcsv_add":"Adicionar"
+            "insertcsv_add": "Adicionar",
+            "addon_insertcsv_label_1": "Elija el archivo: "
         },
         "fr": {
             "addon_insertcsv_popup_title": "Insérer Un Fichier CSV",
-            "insertcsv_add":"Ajouter"
+            "insertcsv_add": "Ajouter",
+            "addon_insertcsv_label_1": "Choisissez le fichier: "
         }
     }
 }
