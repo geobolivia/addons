@@ -67,7 +67,6 @@
             "NO File data are well defined":"Los datos del archivo NO estan bien definidos",
             "File Very Large": "Archivo Muy Grande",
             "Your file weighs": "Su Archivo Pesa: ",
-            
             "Error": "Error",
             "The file has no extension":"El Archivo No tiene extension .CSV",
             "Failed to load file":"No se pudo cargar el archivo"
@@ -97,7 +96,6 @@
             "NO File data are well defined":"Aucune donnée de fichiers sont bien définis",
             "File Very Large": "Déposer Very Large",
             "Your file weighs": "Votre fichier pèse: ",
-            
             "Error": "Erreur",
             "The file has no extension":"Le fichier n'a pas d'extension .CSV",
             "Failed to load file":"Impossible de charger le fichier"
