@@ -1,0 +1,106 @@
+{
+    "js": [
+        "js/main.js",
+        "js/MultiSelect.js"
+        
+    ],
+    "css": [
+        "css/main.css",
+        "css/MultiSelect.css"
+    ],
+    "default_options": {
+        "editableCombos": true
+    },
+    "i18n": {
+        "en": {
+            "title":"Insert CSV",
+            "popup_title": "Insert File CSV",
+            "Import": "Import",
+            "Latitude":"Latitude",
+            "Longitude":"Longitude",
+            "csv_title": "Title",
+            "Delimiter":"Delimiter",
+            "The Data Not Numeric": "The Data Not Numeric",
+            "Insert Fields Latitude and Longitude": "Insert Fields Latitude and Longitude in The Next Format: ",
+            "Required Field": "Required Field",
+            "Select Fields": "Select Fields Latitude and Longitude",
+            "The CSV file must weigh 50 Kbytes": "The CSV file must weigh 50 Kbytes or less",
+            "Alert": "Alert",
+            "Delimiter Default":"Delimiter Default: \";\"",
+            "Description":"Description<br />(Optional)",
+            "To select multiple areas": "To select multiple areas hold down CTRL",
+            "Title2": "Title: ",
+            "Latitude2": "Latitude: ",
+            "Longitude2": "Longitude: ",
+            "Description2": "Description",
+            "Formed wrong":"Formed wrong Archive", 
+            "NO File data are well defined":"NO File data are well defined",     
+            "File Very Large": "File Very Large",
+            "Your file weighs": "Your file weighs: ",
+            
+            "Error": "Error",
+            "The file has no extension": "The file has no extension .CSV",
+            "Failed to load file": "Failed to load file"
+        },
+        "es": {
+            "title":"Insertar CSV",
+            "popup_title": "Insertar Archivo CSV",
+            "Import": "Importar",
+            "Latitude":"Latitud",
+            "Longitude":"Longitud",
+            "csv_title": "Titulo",
+            "Delimiter":"Delimitador",
+            "The Data Not Numeric": "El Dato No es Numerico",
+            "Insert Fields Latitude and Longitude": "Inserte Campos Latitud y Longitud en El Siguiente Formato: ",
+            "Required Field": "Campo Obligatorio",
+            "Select Fields": "Seleccione Campos Latitud y Longitud",
+            "The CSV file must weigh 50 Kbytes": "El archivo CSV debe pesar 50 Kbytes o menos",
+            "Alert": "Alerta",
+            "Delimiter Default":"Delimitador Por Defecto: \";\"",
+            "Description":"Descripción <br />(Opcional)",
+            "To select multiple areas": "Para seleccionar varios campos mantenga presionada la tecla CTRL",
+            "Title2": "Titulo: ",
+            "Latitude2": "Latitud: ",
+            "Longitude2": "Longitud: ",
+            "Description2": "Descripción",
+            "Formed wrong":"Archivo Mal Formado",
+            "NO File data are well defined":"Los datos del archivo NO estan bien definidos",
+            "File Very Large": "Archivo Muy Grande",
+            "Your file weighs": "Su Archivo Pesa: ",
+            
+            "Error": "Error",
+            "The file has no extension":"El Archivo No tiene extension .CSV",
+            "Failed to load file":"No se pudo cargar el archivo"
+        },
+        "fr": {
+            "title":"Insert CSV",
+            "popup_title": "Insérer Un Fichier CSV",
+            "Import": "Matter",
+            "Latitude":"Latitude",
+            "Longitude":"Longueur",
+            "csv_title": "Titre",
+            "Delimiter":"Delimiter",
+            "The Data Not Numeric": "Les données non numérique",
+            "Insert Fields Latitude and Longitude": "Latitudes et la longitude insérer des champs dans la prochaine format: ",
+            "Required Field": "Champ Obligatoire",
+            "Select Fields": "Sélectionner les champs Latitude et Longitude",
+            "The CSV file must weigh 50 Kbytes": "Le fichier CSV doit peser 50 kbytes ou moins",
+            "Alert": "Alerter",
+            "Delimiter Default":"Delimiter par défaut: \";\"",
+            "Description":"Description <br />(Optionnel)",
+            "To select multiple areas": "Pour sélectionner plusieurs zones maintenez la touche CTRL",
+            "Title2": "Titre: ",
+            "Latitude2": "Latitude: ",
+            "Longitude2": "Longitude: ",
+            "Description2": "Description",
+            "Formed wrong":"Archive mal formé",
+            "NO File data are well defined":"Aucune donnée de fichiers sont bien définis",
+            "File Very Large": "Déposer Very Large",
+            "Your file weighs": "Votre fichier pèse: ",
+            
+            "Error": "Erreur",
+            "The file has no extension":"Le fichier n'a pas d'extension .CSV",
+            "Failed to load file":"Impossible de charger le fichier"
+        }
+    }
+}
