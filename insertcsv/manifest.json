@@ -1,8 +1,7 @@
 {
     "js": [
         "js/main.js",
-        "js/MultiSelect.js"
-        
+        "js/MultiSelect.js"     
     ],
     "css": [
         "css/main.css",
