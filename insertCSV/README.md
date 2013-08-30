@@ -5,7 +5,7 @@ This addon allows users to
 authors: @rucondori
 
 For the addon config should look like this:
-
+´´´
     {
         "id": "insertcsv_0",
         "name": "InsertCSV",
@@ -15,15 +15,15 @@ For the addon config should look like this:
             "fr": "insérer un fichier CSV"
         },
         "description": {
-            "en": "Tool to insert a CSV file",
-            "es": "Herramienta para insertar un archivo CSV.",
-            "fr": "Outil pour insérer un fichier CSV"
+            "en": "Adds points from a delimited text file CSV",
+            "es": "Permite añadir puntos a partir de un archivo de texto delimitado CSV.",
+            "fr": "Ajoute des points à partir d'un fichier texte délimité CSV"
         }
     }
-    
+´´´    
 
 For a :
-
+´´´
     {
         "id": "insertcsv_0",
         "name": "InsertCSV",
@@ -33,12 +33,12 @@ For a :
             "fr": "insérer un fichier CSV"
         },
         "description": {
-            "en": "Tool to insert a CSV file",
-            "es": "Herramienta para insertar un archivo CSV.",
-            "fr": "Outil pour insérer un fichier CSV"
+            "en": "Adds points from a delimited text file CSV",
+            "es": "Permite añadir puntos a partir de un archivo de texto delimitado CSV.",
+            "fr": "Ajoute des points à partir d'un fichier texte délimité CSV"
         }
     }
-
+´´´
 
 Default options for this addon are specified in the manifest.json file:
 
