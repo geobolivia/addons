@@ -19,26 +19,21 @@ GEOR.Addons.InsertCSV.prototype = {
     win: null,
     jsonFormat: null,
     geojsonFormat: null,
-    
     cbboxLat: null,
     cbboxlon: null,
     cbbxTitle:null,					/// cbbxTitle
     cbboxDelim:null,
-    
     panelData: null,
     panelDesc: null,
     headCSV: "",						///headCSV
     listItemDesc: null,					//listItemDesc
-    
     information: null, 					
     listDesc:null,						// listDesc
     form: null,					//form
     delim: "",		
     arrayHeadCSV: null,					//arrayHeadCSV
-    
     ctrlSelect:null,					//ctrlSelect
     layerCSV: null,					//layerCSV
-    
     mmap: null,						
 
     /**
@@ -47,13 +42,10 @@ GEOR.Addons.InsertCSV.prototype = {
      * Parameters:
      * record - {Ext.data.record} a record with the addon parameters
      */
-
     init: function(record) {
         var lang = OpenLayers.Lang.getCode();
-       
         this.jsonFormat = new OpenLayers.Format.JSON();
         this.geojsonFormat = new OpenLayers.Format.GeoJSON();
-	        
         layerCSV = new OpenLayers.Layer.Vector(OpenLayers.i18n('title'), {
             displayInLayerSwitcher: true,
              styleMap: new OpenLayers.StyleMap({
@@ -73,7 +65,6 @@ GEOR.Addons.InsertCSV.prototype = {
 		}
 	    }
         });
-	
 	mmap = this.map;
         this.layer= layerCSV;
         this.map.addLayer(this.layer);
@@ -84,24 +75,21 @@ GEOR.Addons.InsertCSV.prototype = {
             handler: this.showWindow,
             scope: this
         });
-	
 	listDesc = [[0,""]];
 	information = new Ext.data.ArrayStore({
 	    fields: ['number','dato'],
 	    data : [[0,""]]
 	});
-	
-        cbboxLat = this.createComboBox('cbboxLat',OpenLayers.i18n('Latitude'), information , false);
-        cbboxLon = this.createComboBox('cbboxLong',OpenLayers.i18n('Longitude'),information, false);
-	cbbxTitle = this.createComboBox('cbbxTitle',OpenLayers.i18n('csv_title'),information, true);
+        cbboxLat = this.createComboBox('cbboxLat',OpenLayers.i18n('Latitude'), information );
+        cbboxLon = this.createComboBox('cbboxLong',OpenLayers.i18n('Longitude'),information);
+	cbbxTitle = this.createComboBox('cbbxTitle',OpenLayers.i18n('csv_title'),information);
 	panelData = this.createPanelData();
 	cbboxDelim = this.createComboDelim('cbboxDelim',OpenLayers.i18n('Delimiter'),
-		new Ext.data.ArrayStore({
-		    fields: ['number','dato'],
-		    data : [[0,';'],[1,','],[2,'|']]
-	        }, true)
+		    new Ext.data.ArrayStore({
+			fields: ['number','dato'],
+			data : [[0,';'],[1,','],[2,'|']]
+		    }, true)
 	);
-    
 	listItemDesc = this.createListGroup();
 	panelDesc = this.createPanelDesc();
 	panelDelim = this.createPanelDelim();
@@ -127,7 +115,6 @@ GEOR.Addons.InsertCSV.prototype = {
 	    unpinnable:false,
 	    draggable: false,
         });
-        
 	popup.on({
             close: function() {
                 if( OpenLayers.Util.indexOf(layerCSV.selectedFeatures,this.feature) > -1) {
@@ -139,7 +126,7 @@ GEOR.Addons.InsertCSV.prototype = {
     },
 
     showWindow: function() {
-        
+	
 	function putMarker(){
             var dats= form.getForm().getValues(true).replace(/&/g,', ');
             var da= dats.split(",");
@@ -179,6 +166,7 @@ GEOR.Addons.InsertCSV.prototype = {
         }
 	
 	if (!this.win) {
+	    form.getForm().reset();
             this.win = new Ext.Window({
                 closable: true,
                 closeAction: 'hide',
@@ -198,7 +186,6 @@ GEOR.Addons.InsertCSV.prototype = {
 			var da= dats.split(",");
 			var lt = da[1].split("=");
 			var lg = da[2].split("=");          
-			
 			if (lt[1] != 'Select%20a%20field' && lg[1] != 'Select%20a%20field') {
 			    var num = arrayHeadCSV.split(delim);
 			    var indexLt = 0;
@@ -292,8 +279,8 @@ GEOR.Addons.InsertCSV.prototype = {
 	    emptyText: 'Select a field',
 	    width: 160,
 	    onSelect: function(record) {                                           
-		 this.setValue(record.data.dato);
-		 this.collapse();
+		this.setValue(record.data.dato);
+		this.collapse();
 	    }
 	});
         return combo;
@@ -359,7 +346,7 @@ GEOR.Addons.InsertCSV.prototype = {
 		  }]					
 		}
 	    ]
-	    });
+	});
 	return panel;
     },
      
@@ -395,7 +382,8 @@ GEOR.Addons.InsertCSV.prototype = {
     },
         
     createListGroup: function(){
-	var listItemDesc = {xtype: 'multiselect',
+	var listItemDesc = {
+	    xtype: 'multiselect',
 	    fieldLabel: OpenLayers.i18n('Description'),
 	    name: 'multiselect',
 	    displayField: 'dato',
@@ -466,6 +454,7 @@ GEOR.Addons.InsertCSV.prototype = {
 		+OpenLayers.i18n('Description2')+"</u>: </big></b><br>";
 	var cab = myFile.split("\n");
 	var desc = da[4].split("=");
+	
 	if (desc[1] != '') {
 	    var list = desc[1].split("%2C");
 	    var ca = cab[index].split(delim);
@@ -485,6 +474,7 @@ GEOR.Addons.InsertCSV.prototype = {
 	var v="";
 	var rows = myFile.split("\n");
 	var col = rows[row].split(delim);
+	
 	for (var i=0; i < col.length; i++) {
 	    if(headCSV[i] == column){
 		v = col[i];
@@ -510,6 +500,7 @@ GEOR.Addons.InsertCSV.prototype = {
 
 function readFileCSV(evt) {						//readFileCSV
     var f = evt.target.files[0];
+    
     if (f) {               
 	if ((f.name.substr(f.name.indexOf("."), f.name.length) == ".csv")
 	    || (f.name.substr(f.name.indexOf("."), f.name.length) == ".CSV")) {
