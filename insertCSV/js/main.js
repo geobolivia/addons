@@ -1,3 +1,7 @@
+/* 
+ * Copyright (c) 2013 by GeoBolivia 
+ * Author: Ruddy Condori Topoco <rucocool@gmail.com, rucocool@hotmail.com, rucondori@geo.gob.bo> 
+ */
 
 Ext.namespace("GEOR.Addons");
 
