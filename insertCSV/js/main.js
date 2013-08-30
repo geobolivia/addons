@@ -2,7 +2,6 @@
  * Copyright (c) 2013 by GeoBolivia 
  * Author: Ruddy Condori Topoco <rucocool@hotmail.com, rucocool@gmail.com, rucondori@geo.gob.bo> 
  */
-
 Ext.namespace("GEOR.Addons");
 
 GEOR.Addons.InsertCSV = function(map, options) {
