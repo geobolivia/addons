@@ -1,0 +1,84 @@
+{
+    "js": [
+        "js/main.js"
+    ],
+    "css": [
+        "css/main.css"
+    ],
+    "i18n": { 
+        "en": {
+            "addon_point_located_popup_title": "COORDINATE WINDOW",
+            "cance":            "cancel",
+            "textwin":          "Display the selector and choose the type you want to input coordinate",
+            "titform1":         "COORDINATES: Decimal degrees",
+            "titform2":         "COORDINATES: Degrees Minutes Seconds",
+            "titform3":         "COORDINATES: Utm",
+            "txtcombo1":        "Decimal Degrees",
+            "txtcombo2":        "Degrees Minutes Seconds",
+            "txtcombo3":        "Universal Transverse Mercator (UTM)",
+            "txtcombo3agua":    "Scroll and select your option",
+            "txtbuttomsearch":  "locate",
+            "txthem":           "Hemisphere (S)",
+            "txtlat":           "Latitude",
+            "txtlong":          "Length",
+            "txtzon":           "Area :",
+            "errblancotit":     "Error fields blank",
+            "errblancomen":     "Fill out all fields !!!",
+            "errrangotit":      "Out of Range",
+            "errrangomen":      "Coordinates not valid !!!",
+            "errtitform2":      "Invalid values",
+            "errmenform2":      "Enter values between [9-22 Latitude and Longitude 57-69] [0-59 for minutes and seconds] !!!",
+            "nomlayer":         "Point Located"
+        },
+        "es": {
+            "addon_point_located_popup_title": "  VENTANA DE COORDENADAS",
+            "cance":            "cancelar",
+            "textwin":          "Despliegue el selector y elija el tipo de coordenada que desea ingresar",
+            "titform1":         "COORDENADAS : Grados Decimales",
+            "titform2":         "COORDENADAS : Grados Minutos Segundos",
+            "titform3":         "COORDENADAS : Utm)",
+            "txtcombo1":        "Grados Decimales",
+            "txtcombo2":        "Grados Minutos Segundos",
+            "txtcombo3":        "Universal Transversal de Mercator (UTM)",
+            "txtcombo3agua":    "Desplace y elija su opcion",
+            "txtbuttomsearch":  "ubicar",
+            "txthem":           "Hemisferio (S)",
+            "txtlat":           "Latitud",
+            "txtlong":          "Longitud",
+            "txtzon":           "Zona :",
+            "errblancotit":     "Error de campos en blanco",
+            "errblancomen":     "LLene todos los campos !!!",
+            "errrangotit":      "Fuera de Rango",
+            "errrangomen":      "Coordenadas no validas !!!",
+            "errtitform2":      "Valores no validos",
+            "errmenform2":      "Ingrese valores entre [9-22 Latitud y 57-69 Longitud] [0-59 para minutos y segundos] !!!",
+            "nomlayer":         "Punto Ubicado"
+        },
+        "fr": {
+            "addon_point_located_popup_title": "COORDONNEES FENETRE",
+            "cance":            "résilier",
+            "textwin":          "Afficher la sélection et choisissez le type que vous souhaitez entrer coordonner",
+            "titform1":         "COORDONNÉES: degrès décimaux",
+            "titform2":         "Coordonnées: Degrés Minutes Secondes",
+            "titform3":         "COORDONNÉES: Utm",
+            "txtcombo1":        "Degrès Décimaux",
+            "txtcombo2":        "Degrés Minutes Secondes",
+            "txtcombo3":        "Universal Transverse Mercator (UTM)",
+            "txtcombo3agua":    "Faites défiler et sélectionnez l'option",
+            "txtbuttomsearch":  "repérer",
+            "txthem":           "Hemisphere (S)",
+            "txtlat":           "Latitude",
+            "txtlong":          "Longueur",
+            "txtzon":           "Région :",
+            "errblancotit":     "Champs d'erreur vierge",
+            "errblancomen":     "Remplissez tous les champs !!!",
+            "errrangotit":      "Hors de Portée",
+            "errrangomen":      "Coordonne pas valide !!!",
+            "errtitform2":      "Les valeurs incorrectes",
+            "errmenform2":      "Entrez les valeurs entre [9-22 Latitude et Longitude 57-69] [0-59 pour minutes et secondes] !!!",
+            "nomlayer":         "Point Situé"
+
+        }
+    }
+}
+
