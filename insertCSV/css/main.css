@@ -1,0 +1,12 @@
+.insertcsv-icon {
+    background-image: url(../img/icon.png) !important;
+}
+.gx-popup-point-anc {
+    background: transparent url(../img/anc.png) no-repeat 0 0;
+    position: relative;
+    top:-1px;
+    left:5px;
+    z-index:2;
+    height:20px;
+    width:31px;
+}
