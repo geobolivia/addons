@@ -21,6 +21,8 @@ GEOR.Addons.GeoCrono.prototype = {
     interval: null,
     counter: null,
     delay: 2000,
+    layerStart: null,
+    layerEnd: null,
     /**
      * Method: init
      *
@@ -38,9 +40,8 @@ GEOR.Addons.GeoCrono.prototype = {
             handler: this.showWindow,
             scope: this
         });
-        var layers = [];
-        cbboxStart = this.createComboBox('cbboxStart',OpenLayers.i18n('Start'), this.layers);
-        cbboxEnd = this.createComboBox('cbboxEnd',OpenLayers.i18n('End'),this.layers)
+        cbboxStart = this.createComboBox('cbboxStart',OpenLayers.i18n('Start'));
+        cbboxEnd = this.createComboBox('cbboxEnd',OpenLayers.i18n('End'))
 
         return this.item;
     },
@@ -170,13 +171,10 @@ GEOR.Addons.GeoCrono.prototype = {
         });
         return combo;
     },
-    createComboBox: function(id, field, store) {
+    createComboBox: function(id, field) {
+        var me = this;
         var combo = new Ext.form.ComboBox({
             id: id,
-            store: new Ext.data.ArrayStore({
-                fields: ['abbr', 'layer'],
-                data: store
-            }),
             displayField: 'layer',
             editable: false,
             mode: 'local',
@@ -185,6 +183,14 @@ GEOR.Addons.GeoCrono.prototype = {
             emptyText: OpenLayers.i18n('Select a layer'),
             width: 100,
             onSelect: function(record) {
+                var abbr = record.data.abbr;
+                if(this.id == "cbboxStart"){
+                    me.layerStart = abbr;
+                } else if(this.id == "cbboxEnd") {
+                    me.layerEnd = abbr;
+                }
+                this.setValue(abbr);
+                this.collapse();
             }
         });
         return combo;
@@ -195,7 +201,20 @@ GEOR.Addons.GeoCrono.prototype = {
         var delay = this.delay;
         if (items != null) {
             items = items.items;
-            this.interval = setInterval(this.update, delay, this, items);
+            if(this.layerStart != null && this.layerEnd != null){
+                var is = this.indexOf(items, this.layerStart);
+                var ie = this.indexOf(items, this.layerEnd);
+                if(ie > is){
+                    items = items.slice(is, 1 + ie);
+                    this.interval = setInterval(this.update, delay, this, items);
+                } else {
+                    GEOR.util.errorDialog({
+                        msg: OpenLayers.i18n('La capa fin debe ser superio a la de inicio')
+                    });
+                }
+            }else{
+                this.interval = setInterval(this.update, delay, this, items);
+            }
         }
     },
     update: function(me, items) {
@@ -215,6 +234,17 @@ GEOR.Addons.GeoCrono.prototype = {
     stop: function() {
         console.info("Stop Animation");
         clearInterval(this.interval);
+    },
+    indexOf: function(items, name){
+        var pos = -1;
+        for(var i=0; i< items.length; i++){
+            var item = items[i];
+            if(item.inputValue == name){
+                pos = i;
+                break;
+            }
+        }
+        return pos;
     },
     /*****/
 
@@ -255,11 +285,13 @@ GEOR.Addons.GeoCrono.prototype = {
                 if (mm.layersWms == null) {
                     mm.layersWms = [];
                 }
+                var storage = [];
                 //layers wms
                 for (var i = 0; i < layers.length; i++) {
                     if (layers[i].name && layers[i].name != "") {
                         var title = layers[i].title;
                         var name = layers[i].name;
+                        storage.push([name,title]);
                         rbItems.push({
                             boxLabel: mm.subString(title, 7),
                             inputValue: name
@@ -293,6 +325,17 @@ GEOR.Addons.GeoCrono.prototype = {
 
                 rbg.items = rbItems;
                 form.add(rbg);
+                //add combobox
+                var cbboxStart = Ext.getCmp('cbboxStart');
+                cbboxStart.store= new Ext.data.ArrayStore({
+                    fields: ['abbr', 'layer'],
+                    data: storage
+                });
+                var cbboxEnd = Ext.getCmp('cbboxEnd');
+                cbboxEnd.store= new Ext.data.ArrayStore({
+                    fields: ['abbr', 'layer'],
+                    data: storage
+                });
                 form.doLayout();
             },
             failure: function() {
