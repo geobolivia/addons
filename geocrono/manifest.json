@@ -16,6 +16,10 @@
             "Start":"Iniciar",
             "End":"Fin",
             "Day":"Día",
+            "Delay":"Delay",
+            "Slow":"Slow",
+            "Normal":"Normal",
+            "Fast":"Fast",
             "Select a layer":"Seleccione una capa",
             "Server unavailable":"Servidor no disponible"
         },
@@ -24,6 +28,10 @@
             "Start":"Iniciar",
             "End":"Fin",
             "Day":"Día",
+            "Delay":"Delay",
+            "Slow":"Lento",
+            "Normal":"Normal",
+            "Fast":"Rapido",
             "Select a layer":"Seleccione una capa",
             "Server unavailable":"Servidor no disponible"
         },

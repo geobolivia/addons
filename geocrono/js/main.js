@@ -20,6 +20,7 @@ GEOR.Addons.GeoCrono.prototype = {
     cbboxEnd: null,
     interval: null,
     counter: null,
+    delay: 2000,
     /**
      * Method: init
      *
@@ -79,43 +80,77 @@ GEOR.Addons.GeoCrono.prototype = {
     createFormNorth: function() {
         var me = this;
         var form = new Ext.FormPanel({
-            labelAlign: 'left',
+            labelAlign: 'right',
+            labelWidth: 'auto',
             width: '100%',
             frame: true,
             bodyStyle: 'padding:5px 5px 0',
             items: [{
                 layout: 'column',
-                items: [{
-                    xtype: 'button',
-                    iconCls: 'start-icon',
-                    scope: this,
-                    handler: function() {
-                        console.info("Start Animation ");
-                        var items = Ext.getCmp('radioGroup').items;
-                        if (items != null) {
-                            items = items.items;
-                            me.interval = setInterval(me.start, 2500, me, items);
+                items: [ {
+                    columnWidth: .05,
+                    layout: 'form',
+                    items: [{
+                        xtype: 'button',
+                        iconCls: 'start-icon',
+                        scope: this,
+                        handler: function() {
+                            me.start();
                         }
-                    }
-                 }, {
-                    xtype: 'button',
-                    iconCls: 'stop-icon',
-                    scope: this,
-                    handler: function() {
-                        me.stop();
-                    }
+                     }] 
                 }, {
-                    columnWidth: .5,
+                    columnWidth: .05,
+                    layout: 'form',
+                    items: [{
+                        xtype: 'button',
+                        iconCls: 'stop-icon',
+                        scope: this,
+                        handler: function() {
+                            me.stop();
+                        }
+                    }]
+                }, {
+                    columnWidth: .3,
+                    layout: 'form',
+                    items: [this.createComoBoxDelay(me)]
+                }, {
+                    columnWidth: .3,
                     layout: 'form',
                     items: [cbboxStart]
                 }, {
-                    columnWidth: .5,
+                    columnWidth: .3,
                     layout: 'form',
                     items: [cbboxEnd]
                 }]
             }]
         });
         return form;
+    },
+    createComoBoxDelay: function(me){
+        var store=[];
+        store.push([2000, OpenLayers.i18n('Slow')]);
+        store.push([1500, OpenLayers.i18n('Normal')]);
+        store.push([600, OpenLayers.i18n('Fast')]);
+        var combo = new Ext.form.ComboBox({
+            id: "cbboxDelay",
+            store: new Ext.data.ArrayStore({
+                fields: ['delay', 'name'],
+                data: store
+            }),
+            displayField: 'name',
+            editable: false,
+            mode: 'local',
+            triggerAction: 'all',
+            fieldLabel: OpenLayers.i18n('Delay'),
+            value: OpenLayers.i18n('Slow'),
+            width: 70,
+            onSelect: function(record) {
+                me.delay = record.data.delay;
+                this.setValue(record.data.name);
+                this.collapse();
+            }
+        });
+        return combo;
     },
     createComboBox: function(id, field, store) {
         var combo = new Ext.form.ComboBox({
@@ -130,13 +165,22 @@ GEOR.Addons.GeoCrono.prototype = {
             triggerAction: 'all',
             fieldLabel: field,
             emptyText: OpenLayers.i18n('Select a layer'),
-            width: 200,
+            width: 100,
             onSelect: function(record) {
             }
         });
         return combo;
     },
-    start: function(me, items) {
+    start: function(){
+        console.info("Start Animation ");
+        var items = Ext.getCmp('radioGroup').items;
+        var delay = this.delay;
+        if (items != null) {
+            items = items.items;
+            this.interval = setInterval(this.update, delay, this, items);
+        }
+    },
+    update: function(me, items) {
         if (me.counter == null)
             me.counter = 0;
         else {
@@ -147,7 +191,6 @@ GEOR.Addons.GeoCrono.prototype = {
         }
         var item = items[me.counter];
         if (item != null) {
-            console.info("item " + me.counter + " " + item.inputValue);
             item.setValue(true);
         }
     },
@@ -204,6 +247,9 @@ GEOR.Addons.GeoCrono.prototype = {
                             boxLabel: mm.subString(title, 7),
                             inputValue: name
                         });
+                        if(i == 0){
+                            rbItems[0].checked=true;
+                        }
                         var layer = new OpenLayers.Layer.WMS(name, url, {
                             singleTile: false,
                             layers: name,
@@ -214,7 +260,6 @@ GEOR.Addons.GeoCrono.prototype = {
                         mm.layersWms.push([layer.id, name, layer]);
                     }
                 }
-
                 var rbg = new Ext.form.RadioGroup({
                     id: 'radioGroup',
                     columns: 6,
