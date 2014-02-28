@@ -54,6 +54,7 @@ GEOR.Addons.GeoCrono.prototype = {
         this.map = null;
     },
     showWindow: function() {
+        var me = this;
         if (!this.win) {
             this.win = new Ext.Window({
                 title: OpenLayers.i18n('GeoCrono'),
@@ -71,10 +72,27 @@ GEOR.Addons.GeoCrono.prototype = {
                 }, {
                     region: 'center',
                     items: [this.createFormCenter()]
-                }]
+                }],
+                listeners:{
+                    'close':function(win){
+                    },'hide':function(win){
+                        me.removeLayers();
+                    }
+                }
             });
         }
         this.win.show();
+    },
+    removeLayers: function(){
+        this.stop();
+        for (var i = 0; i < this.layersWms.length; i++) {
+            var l = this.layersWms;
+            var id = l[i][0];
+            var layerC = this.map.getLayer(id);
+            if (layerC != null) {
+                this.map.removeLayer(layerC);
+            }
+        }
     },
     /*****/
     createFormNorth: function() {
@@ -213,9 +231,8 @@ GEOR.Addons.GeoCrono.prototype = {
     },
     getLayersWms: function(form, comp) {
         var mm = comp;
-        GEOR.waiter.show();
         var url = this.options.urlWmsCapabilities;
-        var request = OpenLayers.Request.GET({
+        OpenLayers.Request.GET({
             url: url,
             params: {
                 SERVICE: "WMS",
